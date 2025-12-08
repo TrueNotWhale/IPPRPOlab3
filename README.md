@@ -37,8 +37,9 @@
 ```bash
 git clone https://github.com/TrueNotWhale/IPPRPOlab3.git
 cd IPPRPOlab3
+```
 
-2. Конфигурация приложения
+### 2. Конфигурация приложения
 
 ВАЖНО: Перед первым запуском необходимо создать файл конфигурации app.properties в корневой директории проекта.
 
@@ -53,7 +54,7 @@ scan.directory=./test-data
 hash.algorithm=SHA-256
 
 # Директории, которые нужно исключить из сканирования (через запятую, без пробелов)
-scan.ignore.dirs=.git,build,out```
+scan.ignore.dirs=.git,build,out
 
 #### Описание параметров:
 
@@ -72,7 +73,8 @@ scan.ignore.dirs=.git,build,out```
 *   **Windows:**
     ```cmd
     gradlew.bat build
-    ```*   **Linux / macOS:**
+    ```
+*   **Linux / macOS:**
     ```bash
     ./gradlew build
     ```
