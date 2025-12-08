@@ -1,0 +1,57 @@
+# Название Workflow
+name: Java CI with Gradle
+
+# Триггер: запускать при push в ветку 'main'
+on:
+  push:
+    branches: [ "main" ]
+
+# Задания
+jobs:
+  build:
+    # Название задания
+    name: Build on ${{ matrix.os }}
+
+    # Задание 1 (из ЛР): Matrix по ОС
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    # Указываем, на какой ОС запускать
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      # Шаг 1: Клонируем репозиторий
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Шаг 2: Устанавливаем JDK 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # Шаг 3: Даем права на выполнение для gradlew (важно для Linux)
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # Шаг 4: Создаем тестовый файл конфигурации
+      # ВАЖНО: Мы не храним app.properties в Git, поэтому создаем его на лету
+      - name: Create app.properties for testing
+        run: |
+          echo "scan.directory=." >> app.properties
+          echo "hash.algorithm=SHA-256" >> app.properties
+          echo "scan.ignore.dirs=.git,build" >> app.properties
+
+      # Шаг 5: Запускаем сборку и тесты
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      # Задание 2 (из ЛР): Публикация JAR
+      # Шаг 6: Загружаем JAR-файл как артефакт
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: duplicate-finder-jar-${{ matrix.os }}
+          path: app/build/libs/*.jar
