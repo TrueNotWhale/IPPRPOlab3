@@ -29,7 +29,7 @@
 
 Для сборки и запуска проекта вам понадобятся:
 *   Git
-*   JDK (Java Development Kit) версии 17 или выше.
+*   JDK (Java Development Kit) версии 17
 
 ### 1. Клонирование репозитория
 
@@ -47,14 +47,14 @@ cd IPPRPOlab3
 
 Создайте файл app.properties и добавьте в него следующее содержимое:
 
-# Директория для сканирования (может быть относительной или абсолютной)
+```cmd
+# Директория для сканирования
 scan.directory=./test-data
-
-# Алгоритм хэширования: MD5 или SHA-256
+# Алгоритм хэширования: MD5, SHA-256
 hash.algorithm=SHA-256
-
-# Директории, которые нужно исключить из сканирования (через запятую, без пробелов)
-scan.ignore.dirs=.git,build,out
+# Исключить директории (через запятую)
+scan.ignore.dirs=.git,build
+```
 
 #### Описание параметров:
 
@@ -110,6 +110,7 @@ scan.ignore.dirs=.git,build,out
 
 #### Пример вывода в консоли:
 
+```cmd
 Task :app:run
 --- Found Duplicates ---
 
@@ -120,6 +121,7 @@ C:\dev\IPPRPO\lab3\IPPRPOlab3\test-data\CopyofM.cs
 C:\dev\IPPRPO\lab3\IPPRPOlab3\test-data\Match.cs
 
 BUILD SUCCESSFUL in 6s
+```
 
 ## Непрерывная интеграция (CI/CD)
 
