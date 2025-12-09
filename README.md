@@ -29,7 +29,7 @@
 
 Для сборки и запуска проекта вам понадобятся:
 *   Git (Можно скачать с [git-scm](https://git-scm.com/install/windows))
-*   JDK (Java Development Kit) версии 17 (Можно скачать c [adoptium](https://www.oracle.com/java/technologies/downloads/#java17-windows))
+*   JDK (Java Development Kit) версии 17 (Можно скачать c [adoptium](https://adoptium.net/temurin/releases/?version=17&os=any&arch=any))
 
 ### 1. Клонирование репозитория
 
